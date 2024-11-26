@@ -19,7 +19,7 @@ mongoose
   .then(() => {
     app.listen(5000, () => {
       console.log(
-        "Connected to Database and Server is running on http://localhost:5000"
+        "Connected to Database and Server is run on http://localhost:5000"
       );
     });
   })
