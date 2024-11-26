@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRouter from "./routes/user-routes.js";
+import "./routes/user-routes.js";
 import translationRouter from "./routes/translationRoutes.js";
 import cors from "cors";
 
