@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isSupportedLanguage } from "../model/languageModel"; // Import using ES module syntax
+import { isSupportedLanguage } from "../model/languageModel.js"; // Import using ES module syntax
 import dotenv from "dotenv";
 
 dotenv.config();
