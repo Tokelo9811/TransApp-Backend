@@ -1,28 +1,32 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRouter from "./routes/user-routes.js";
-import translationRouter from "./routes/translationRoutes.js";
+import dotenv from "dotenv";
 import cors from "cors";
 
+dotenv.config();
+
+console.log("MongoDB URI:", process.env.MONGODB_URI);
+
 const app = express();
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/user", userRouter);
-app.use("/api/translation", translationRouter);
+if (!MONGODB_URI) {
+  console.error("MongoDB URI is not defined in .env file");
+  process.exit(1);
+}
 
 mongoose
-  .connect(
-    "mongodb+srv://tokelomagutles3:QLsLcAwFFVV16BCM@cluster0.32nd8.mongodb.net/BlogA?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(MONGODB_URI)
   .then(() => {
-    app.listen(5000, () => {
-      console.log(
-        "Connected to Database and Server is run on http://localhost:5000"
-      );
+    console.log("Connected to MongoDB");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("Database connection error:", err);
+    console.error("MongoDB connection error:", err.message);
   });
