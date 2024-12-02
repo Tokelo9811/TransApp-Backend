@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 if (!MONGODB_URI) {
-  console.error("MongoDB URI is not defined in .env file");
+  console.error("MongoDB URI is not defined at .env file");
   process.exit(1);
 }
 
